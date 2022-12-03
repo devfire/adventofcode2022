@@ -6,11 +6,17 @@ use std::io::{self, prelude::*, BufReader};
 // you play:      X for Rock, Y for Paper, and Z for Scissors.
 // (0 if you lost, 3 if the round was a draw, and 6 if you won).
 
+// part 2:
+// X means to lose, Y means to draw, and Z means to win.
 
 fn main() -> io::Result<()> {
     const LOSS: i32 = 0;
     const DRAW: i32 = 3;
     const WIN: i32 = 6;
+
+    const ROCK: i32 = 1;
+    const PAPER: i32 = 2;
+    const SCISSORS: i32 = 3;
 
     let file = File::open("input.txt")?;
     let reader = BufReader::new(file);
@@ -23,18 +29,18 @@ fn main() -> io::Result<()> {
             current_line.retain(|c| !c.is_whitespace());
             // println!("{}", current_line);
             match current_line.as_str() {
-                // draw
-                "AX" => total_score += 1 + DRAW,
-                "BY" => total_score += 2 + DRAW,
-                "CZ" => total_score += 3 + DRAW,
-                // win
-                "AY" => total_score += 2 + WIN,
-                "BZ" => total_score += 3 + WIN,
-                "CX" => total_score += 1 + WIN,
-                // loss
-                "AZ" => total_score += 3 + LOSS,
-                "BX" => total_score += 1 + LOSS,
-                "CY" => total_score += 2 + LOSS,
+                // part 2
+                "AX" => total_score += SCISSORS + LOSS, // x is to lose
+                "BY" => total_score += PAPER + DRAW, // y is to draw
+                "CZ" => total_score += ROCK + WIN, // z is to win
+                // 
+                "AY" => total_score += ROCK + DRAW, // y is to draw
+                "BZ" => total_score += SCISSORS + WIN,
+                "CX" => total_score += PAPER + LOSS,
+                // 
+                "AZ" => total_score += PAPER + WIN,
+                "BX" => total_score += ROCK + LOSS,
+                "CY" => total_score += SCISSORS + DRAW,
                 _ => println!("Unexpected combo"),
             }
         }        
