@@ -65,38 +65,3 @@ fn is_range_subrange(range1: std::ops::Range<i32>, range2: std::ops::Range<i32>)
         // Check if either range ends within the other range
         || (range1.end >= range2.start && range1.end <= range2.end) || (range2.end >= range1.start && range2.end <= range1.end)
 }
-
-// use std::ops::Range;
-
-// fn main() {
-//     let range1 = 1..10;
-//     let range2 = 2..8;
-//     let range3 = 15..20;
-
-//     // Check if range2 is completely contained in range1
-//     let is_subrange = range1.is_subrange(&range2);
-//     println!("Is range2 a subrange of range1: {}", is_subrange);
-
-//     // Check if range3 is completely contained in range1
-//     let is_subrange = range1.is_subrange(&range3);
-//     println!("Is range3 a subrange of range1: {}", is_subrange);
-// }
-
-// let string = "1 2 3 4 5";
-
-// // Split the string into individual words
-// let words: Vec<&str> = string.split_whitespace().collect();
-
-// // Parse each word as an integer
-// let mut numbers = Vec::new();
-// for word in words {
-//     let number = word.parse::<i32>().unwrap();
-//     numbers.push(number);
-// }
-
-// // Find the minimum and maximum values in the vec
-// let min = numbers.iter().min().unwrap();
-// let max = numbers.iter().max().unwrap();
-
-// // Create the range using the min and max values
-// let range = min..max;
